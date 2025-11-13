@@ -39,5 +39,3 @@ def encrypt_fance(text):
 
 def decrypt_fance(text):
     return
-    
-    
