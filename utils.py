@@ -2,7 +2,7 @@ def write_to_file(name):
     with open("names.txt", "a") as f:
         f.write(f"{name}\n")
         
-def encrypt(text,s):
+def encrypt_caesar(text,s):
     result = ""
 
     for i in range(len(text)):
@@ -16,7 +16,7 @@ def encrypt(text,s):
 
     return result
 
-def decrypt(text,s):
+def decrypt_caesar(text,s):
     result = ""
 
     for i in range(len(text)):
@@ -29,3 +29,15 @@ def decrypt(text,s):
             result += chr((ord(char) - s - 97) % 26 + 97)
 
     return result
+
+
+def encrypt_fance(text):
+    new_text = ""
+    for i in text.split():
+        new_text += i    
+    
+
+def decrypt_fance(text):
+    return
+    
+    

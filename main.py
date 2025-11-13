@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from utils import write_to_file, encrypt, decrypt
+from utils import write_to_file, encrypt_caesar, decrypt_caesar
 import uvicorn
 
 app = FastAPI()
@@ -15,12 +15,25 @@ def get_by_name(name):
     return {"message": "saved user"}
 
 @app.post("/caesar")
-def craete_cipher(body:dict):
+def cipher_by_caesar(body:dict):
     if body["mode"] == "encrypt":
-        return {"encrypted_text":encrypt(body["text"], body["s"])}
+        print("encrypt")
+        return {"encrypted_text":encrypt_caesar(body["text"], body["s"])}
         
     if body["mode"] == "decrypt":
-        return {"decrypted_text":decrypt(body["text"],body["s"])}
+        print("decrypted")
+        return {"decrypted_text":decrypt_caesar(body["text"],body["s"])}
+
+# GET /fence/encrypt?{text=str}"
+@app.get("/fence/encrypt")
+def get_text(text:str):
+    return {"text":text}
+
+# POST /fence/decrypt"
+@app.post("/fence/decrypt")
+def cipher_by_fence(body:dict):
+    return body
+    
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8000)
